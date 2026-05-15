@@ -20,21 +20,22 @@
         </div>
     </div>
 
-    <div id="login-page" class="auth-container hidden">
-        <div class="auth-card">
-            <h2>Selamat Datang</h2>
-            <p>Silakan login dengan NIM kamu</p>
-            <div class="input-group">
-                <i class="bi bi-person"></i>
-                <input type="text" id="nim-input" placeholder="NIM (242302011)">
-            </div>
-            <div class="input-group">
-                <i class="bi bi-lock"></i>
-                <input type="password" id="pass-input" placeholder="Password">
-            </div>
-            <button onclick="app.login()">Login</button>
-        </div>
+    <div id="login-page" class="auth-container">
+    <h2>Selamat Datang</h2>
+    <p>Silakan login dengan NIM kamu</p>
+
+    <div class="input-group">
+        <i class="bi bi-person"></i>
+        <input type="text" id="nim-input" placeholder="NIM (242302011)">
     </div>
+
+    <div class="input-group">
+        <i class="bi bi-lock"></i>
+        <input type="password" id="pass-input" placeholder="Password">
+    </div>
+
+    <button class="btn-login" onclick="app.login()">Login Sekarang</button>
+</div>
 
     <div id="main-app" class="app-container hidden">
         <header class="app-header">
