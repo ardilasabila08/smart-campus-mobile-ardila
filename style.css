@@ -1,0 +1,155 @@
+/* Palet Warna Soft & Lucu */
+:root {
+    --primary: #a29bfe;       /* Ungu Pastel */
+    --secondary: #74b9ff;     /* Biru Muda */
+    --bg-app: #f9f9fb;        /* Latar belakang aplikasi */
+    --white: #ffffff;
+    --text-dark: #2d3436;
+    --shadow: 0 10px 25px rgba(162, 155, 254, 0.2);
+}
+
+/* Level 8: Dark Mode Palette */
+.dark-mode {
+    --bg-app: #1a1a2e;        
+    --white: #16213e;         
+    --text-dark: #e9ecef;     
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.3s, color 0.3s;
+}
+
+body {
+    background-color: #dfe6e9; /* Warna di luar bingkai HP agar kontras */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Mengapa tampilannya seperti HP? 
+   Karena ada 'max-width' di bawah ini untuk memenuhi syarat 'Mobile-first design' */
+.app-container, .auth-container, .splash-screen {
+    width: 100%;
+    max-width: 380px; /* Batas lebar agar menyerupai HP (Level 3 & 10) */
+    height: 85vh;     /* Tinggi kotak aplikasi */
+    background: var(--bg-app);
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden { display: none !important; }
+
+/* Splash Screen (Level 3) */
+.splash-screen {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 1000;
+}
+.splash-content i { font-size: 80px; }
+
+/* Halaman Login */
+.auth-container {
+    padding: 30px;
+    justify-content: center;
+}
+.auth-card {
+    background: var(--white);
+    padding: 35px 25px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    color: var(--text-dark);
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+    text-align: left;
+}
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary);
+}
+.input-group input {
+    width: 100%;
+    padding: 14px 15px 14px 45px;
+    border: 2px solid #f1f2f6;
+    border-radius: 15px;
+    background: #fdfdfd;
+    color: var(--text-dark);
+}
+
+/* Tombol */
+button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(162, 155, 254, 0.4);
+}
+
+/* Dashboard & SPA UI (Level 4) */
+.app-header {
+    background: var(--white);
+    padding: 25px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    color: var(--text-dark);
+}
+
+.content-scroll { 
+    padding: 20px; 
+    overflow-y: auto; 
+    flex: 1; 
+    color: var(--text-dark);
+}
+
+.card {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.02);
+    border-left: 5px solid var(--primary);
+}
+
+/* Navigasi Bawah (Level 3 & 4) */
+.bottom-nav {
+    height: 75px;
+    background: var(--white);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+.nav-item { color: #b2bec3; text-align: center; cursor: pointer; }
+.nav-item.active { color: var(--primary); }
+.nav-item i { font-size: 22px; display: block; }
+.nav-item span { font-size: 11px; font-weight: 600; }
+
+/* Dark Mode Overrides */
+.dark-mode body { background-color: #0f3460; }
+.dark-mode .input-group input { background: #1a1a2e; border-color: #2b2b4b; }
+.dark-mode #theme-toggle { background: #0f3460; color: #f1c40f; border: none; padding: 5px 10px; border-radius: 10px; }

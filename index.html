@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Campus - Ardila Sabila</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body class="light-mode">
+
+    <div id="splash" class="splash-screen">
+        <div class="splash-content">
+            <i class="bi bi-mortarboard-fill"></i>
+            <h1>Smart Campus</h1>
+            <p>Ma'soem University</p>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <div id="login-page" class="auth-container hidden">
+        <div class="auth-card">
+            <h2>Selamat Datang</h2>
+            <p>Silakan login dengan NIM kamu</p>
+            <div class="input-group">
+                <i class="bi bi-person"></i>
+                <input type="text" id="nim-input" placeholder="NIM (242302011)">
+            </div>
+            <div class="input-group">
+                <i class="bi bi-lock"></i>
+                <input type="password" id="pass-input" placeholder="Password">
+            </div>
+            <button onclick="app.login()">Login</button>
+        </div>
+    </div>
+
+    <div id="main-app" class="app-container hidden">
+        <header class="app-header">
+            <div class="header-info">
+                <span>Halo, <b id="user-name">Ardila Sabila</b></span>
+            </div>
+            <button id="theme-toggle" onclick="app.toggleTheme()">
+                <i class="bi bi-moon-stars"></i>
+            </button>
+        </header>
+
+        <main id="app-content" class="content-scroll">
+            </main>
+
+        <nav class="bottom-nav">
+            <div class="nav-item active" onclick="app.navigate('dashboard', event)">
+                <i class="bi bi-house"></i><span>Home</span>
+            </div>
+            <div class="nav-item" onclick="app.navigate('jadwal', event)">
+                <i class="bi bi-calendar3"></i><span>Jadwal</span>
+            </div>
+            <div class="nav-item" onclick="app.navigate('tugas', event)">
+                <i class="bi bi-check2-circle"></i><span>Mission</span>
+            </div>
+            <div class="nav-item" onclick="app.navigate('profil', event)">
+                <i class="bi bi-person"></i><span>Profil</span>
+            </div>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
