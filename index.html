@@ -64,13 +64,13 @@
             position: absolute;
             top: 45px;
             right: 0;
-            width: 300px;
+            width: 320px; /* Sedikit diperlebar agar teks rapi */
             background: var(--card-bg, white);
             border: 1px solid #edf2f7;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
             z-index: 1000;
-            padding: 15px;
+            padding: 18px;
             color: #2d3436;
             text-align: left;
         }
@@ -79,9 +79,9 @@
         }
         .noti-item {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             align-items: start;
-            padding: 8px 0;
+            padding: 12px 0;
             border-bottom: 1px solid #edf2f7;
             font-size: 12px;
         }
@@ -210,7 +210,7 @@
             <div class="header-actions">
                 <button class="noti-btn" onclick="toggleNotiPanel()">
                     <i class="bi bi-bell"></i>
-                    <span class="noti-badge" id="noti-badge-count">2</span>
+                    <span class="noti-badge" id="noti-badge-count">4</span>
                 </button>
                 
                 <button id="theme-toggle" onclick="app.toggleTheme()">
@@ -218,19 +218,60 @@
                 </button>
                 
                 <div class="noti-dropdown" id="notiDropdown">
-                    <h4 style="font-size: 14px; margin-bottom: 8px; color: #6c5ce7;">Notifikasi Kampus</h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 2px solid #6c5ce7; padding-bottom: 6px;">
+                        <h4 style="font-size: 14px; margin: 0; color: #6c5ce7; font-weight: 700;"><i class="bi bi-bell-fill"></i> Notifikasi Kampus</h4>
+                        <span style="font-size: 10px; background: #e0d7ff; color: #6c5ce7; padding: 2px 6px; border-radius: 10px; font-weight: 600;">Terbaru</span>
+                    </div>
+
                     <div class="noti-item">
-                        <i class="bi bi-info-circle-fill" style="color: #6c5ce7;"></i>
-                        <div>
-                            <h5 style="font-weight: 600;">UAS Project Website Update!</h5>
-                            <p style="color: #636e72;">Yuk, amankan nilai UAS! Jangan lupa push tugas CV PWA Interaktif terbaikmu ke GitHub, ya.</p>
+                        <div style="background: #e3f2fd; padding: 8px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-calendar2-event-fill" style="color: #007acc; font-size: 16px;"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                                <h5 style="font-weight: 700; margin: 0; font-size: 12px; color: #2d3436;">Reminder Kelas Hari Ini!</h5>
+                                <span style="font-size: 9px; color: #b2bec3;"><i class="bi bi-clock"></i> 07:45</span>
+                            </div>
+                            <p style="color: #636e72; margin: 0; line-height: 1.4;">Jangan sampai terlambat, cek tab <b>Jadwal</b> untuk melihat ruang kuliah aktifmu hari ini!</p>
                         </div>
                     </div>
+
                     <div class="noti-item">
-                        <i class="bi bi-exclamation-triangle-fill" style="color: #e67e22;"></i>
-                        <div>
-                            <h5 style="font-weight: 600;">Misi Tambahan: "Remember Me"</h5>
-                            <p style="color: #636e72;">Kumpulkan screen record latihan tanpa edit ke dosen pengampu untuk klaim bonus LP kamu.</p>
+                        <div style="background: #e8f5e9; padding: 8px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-code-slash" style="color: #2e7d32; font-size: 16px;"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                                <h5 style="font-weight: 700; margin: 0; font-size: 12px; color: #2d3436;">UAS Project Website Update!</h5>
+                                <span style="font-size: 9px; color: #b2bec3;"><i class="bi bi-clock"></i> Baru saja</span>
+                            </div>
+                            <p style="color: #636e72; margin: 0; line-height: 1.4;">Yuk, amankan nilai UAS! Jangan lupa push tugas CV PWA Interaktif terbaikmu ke GitHub, ya.</p>
+                        </div>
+                    </div>
+
+                    <div class="noti-item">
+                        <div style="background: #fff3e0; padding: 8px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-award-fill" style="color: #ef6c00; font-size: 16px;"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                                <h5 style="font-weight: 700; margin: 0; font-size: 12px; color: #2d3436;">Misi: "Remember Me"</h5>
+                                <span style="font-size: 9px; color: #ef6c00; font-weight: 600;"><i class="bi bi-star-fill"></i> +449K LP</span>
+                            </div>
+                            <p style="color: #636e72; margin: 0; line-height: 1.4;">Kumpulkan screen record latihan tanpa edit ke dosen pengampu untuk klaim bonus LP kamu.</p>
+                        </div>
+                    </div>
+
+                    <div class="noti-item">
+                        <div style="background: #f3e5f5; padding: 8px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-cpu-fill" style="color: #8e24aa; font-size: 16px;"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                                <h5 style="font-weight: 700; margin: 0; font-size: 12px; color: #2d3436;">UKM Computer Club Info</h5>
+                                <span style="font-size: 9px; color: #b2bec3;"><i class="bi bi-calendar"></i> Sabtu</span>
+                            </div>
+                            <p style="color: #636e72; margin: 0; line-height: 1.4;">Agenda gathering & coding santai pekan ini akan dilaksanakan di Ruang Lab Komputer.</p>
                         </div>
                     </div>
                 </div>
@@ -455,7 +496,6 @@
                 else if (activeNav === "Profil") {
                     const profileCard = mainContent.querySelector('.card, div');
                     if (profileCard && !document.getElementById('github-profile-btn')) {
-                        // Menghapus tombol bawaan lama agar rapi dan menggantinya dengan grup tombol baru yang cantik
                         const buttonLama = profileCard.querySelector('button');
                         if (buttonLama) buttonLama.remove();
 
