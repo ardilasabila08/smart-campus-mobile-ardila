@@ -8,6 +8,170 @@
     <link rel="manifest" href="manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        /* TAMPILAN RESPONSIF: Lebar di laptop, pas berbentuk HP di smartphone */
+        @media (min-width: 768px) {
+            .app-container {
+                max-width: 900px !important; /* Membuat tampilan melebar pas di laptop */
+                margin: 30px auto;
+                border-radius: 30px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+                height: calc(100vh - 60px) !important;
+            }
+            .auth-container {
+                max-width: 450px !important;
+                margin: 50px auto;
+                border-radius: 30px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            }
+            /* Layout Dashboard membagi 2 kolom khusus di Laptop */
+            .dashboard-layout-laptop {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+        
+        /* Style Tambahan untuk Tombol & Dropdown Notifikasi */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+        .noti-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: inherit;
+            cursor: pointer;
+            position: relative;
+        }
+        .noti-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: #ff7675;
+            color: white;
+            font-size: 9px;
+            padding: 1px 5px;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+        .noti-dropdown {
+            display: none;
+            position: absolute;
+            top: 45px;
+            right: 0;
+            width: 300px;
+            background: var(--card-bg, white);
+            border: 1px solid #edf2f7;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            z-index: 1000;
+            padding: 15px;
+            color: #2d3436;
+            text-align: left;
+        }
+        .noti-dropdown.show {
+            display: block;
+        }
+        .noti-item {
+            display: flex;
+            gap: 10px;
+            align-items: start;
+            padding: 8px 0;
+            border-bottom: 1px solid #edf2f7;
+            font-size: 12px;
+        }
+        .noti-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Style Card Cuaca & Jadwal Baru */
+        .card-custom {
+            background: var(--card-bg, white);
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #edf2f7;
+        }
+        .card-custom-title {
+            font-weight: 700;
+            color: #6c5ce7;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .custom-weather-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 15px;
+            border-radius: 15px;
+        }
+        .custom-list-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .custom-list-item:last-child { border-bottom: none; }
+        .custom-time-tag {
+            background: #e0d7ff;
+            color: #6c5ce7;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        /* Tombol Tautan Kustom untuk Profil */
+        .profile-links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+            width: 100%;
+        }
+        .btn-profile-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-github {
+            background-color: #24292e;
+            color: white !important;
+        }
+        .btn-github:hover {
+            background-color: #1a1e22;
+            transform: translateY(-2px);
+        }
+        .btn-cv-live {
+            background-color: #6c5ce7;
+            color: white !important;
+        }
+        .btn-cv-live:hover {
+            background-color: #5b4cc4;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body class="light-mode">
 
@@ -21,51 +185,310 @@
     </div>
 
     <div id="login-page" class="auth-container">
-    <h2>Selamat Datang</h2>
-    <p>Silakan login dengan NIM kamu</p>
+        <h2>Selamat Datang</h2>
+        <p>Silakan login dengan NIM kamu</p>
 
-    <div class="input-group">
-        <i class="bi bi-person"></i>
-        <input type="text" id="nim-input" placeholder="NIM (242302011)">
+        <div class="input-group">
+            <i class="bi bi-person"></i>
+            <input type="text" id="nim-input" placeholder="NIM (242302011)">
+        </div>
+
+        <div class="input-group">
+            <i class="bi bi-lock"></i>
+            <input type="password" id="pass-input" placeholder="Password">
+        </div>
+
+        <button class="btn-login" onclick="app.login()">Login Sekarang</button>
     </div>
-
-    <div class="input-group">
-        <i class="bi bi-lock"></i>
-        <input type="password" id="pass-input" placeholder="Password">
-    </div>
-
-    <button class="btn-login" onclick="app.login()">Login Sekarang</button>
-</div>
 
     <div id="main-app" class="app-container hidden">
         <header class="app-header">
             <div class="header-info">
                 <span>Halo, <b id="user-name">Ardila Sabila</b></span>
             </div>
-            <button id="theme-toggle" onclick="app.toggleTheme()">
-                <i class="bi bi-moon-stars"></i>
-            </button>
+            
+            <div class="header-actions">
+                <button class="noti-btn" onclick="toggleNotiPanel()">
+                    <i class="bi bi-bell"></i>
+                    <span class="noti-badge" id="noti-badge-count">2</span>
+                </button>
+                
+                <button id="theme-toggle" onclick="app.toggleTheme()">
+                    <i class="bi bi-moon-stars"></i>
+                </button>
+                
+                <div class="noti-dropdown" id="notiDropdown">
+                    <h4 style="font-size: 14px; margin-bottom: 8px; color: #6c5ce7;">Notifikasi Kampus</h4>
+                    <div class="noti-item">
+                        <i class="bi bi-info-circle-fill" style="color: #6c5ce7;"></i>
+                        <div>
+                            <h5 style="font-weight: 600;">UAS Project Website Update!</h5>
+                            <p style="color: #636e72;">Yuk, amankan nilai UAS! Jangan lupa push tugas CV PWA Interaktif terbaikmu ke GitHub, ya.</p>
+                        </div>
+                    </div>
+                    <div class="noti-item">
+                        <i class="bi bi-exclamation-triangle-fill" style="color: #e67e22;"></i>
+                        <div>
+                            <h5 style="font-weight: 600;">Misi Tambahan: "Remember Me"</h5>
+                            <p style="color: #636e72;">Kumpulkan screen record latihan tanpa edit ke dosen pengampu untuk klaim bonus LP kamu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </header>
 
         <main id="app-content" class="content-scroll">
-            </main>
+        </main>
 
         <nav class="bottom-nav">
-            <div class="nav-item active" onclick="app.navigate('dashboard', event)">
+            <div class="nav-item active" onclick="app.navigate('dashboard', event); sisipkanFiturDinamis();">
                 <i class="bi bi-house"></i><span>Home</span>
             </div>
-            <div class="nav-item" onclick="app.navigate('jadwal', event)">
+            <div class="nav-item" onclick="app.navigate('jadwal', event); sisipkanFiturDinamis();">
                 <i class="bi bi-calendar3"></i><span>Jadwal</span>
             </div>
             <div class="nav-item" onclick="app.navigate('tugas', event)">
                 <i class="bi bi-check2-circle"></i><span>Mission</span>
             </div>
-            <div class="nav-item" onclick="app.navigate('profil', event)">
+            <div class="nav-item" onclick="app.navigate('profil', event); sisipkanFiturDinamis();">
                 <i class="bi bi-person"></i><span>Profil</span>
             </div>
         </nav>
     </div>
 
+    <script>
+        function toggleNotiPanel() {
+            const dropdown = document.getElementById('notiDropdown');
+            dropdown.classList.toggle('show');
+            document.getElementById('noti-badge-count').style.display = 'none';
+        }
+        
+        window.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('notiDropdown');
+            const notiBtn = document.querySelector('.noti-btn');
+            if (dropdown && notiBtn && !notiBtn.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        // FUNGSI UTAMA: Menyisipkan Fitur Cuaca, Jadwal, Kuliah, dan Link Eksternal GitHub secara Real-time
+        function sisipkanFiturDinamis() {
+            const daftarHari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            const daftarCuaca = [
+                "Cerah Sekali - 31°C", "Hujan Ringan - 24°C", "Cerah Berawan - 27°C", 
+                "Berawan Tebal - 26°C", "Hujan Petir - 23°C", "Cerah Segar - 29°C", "Mendung - 25°C"
+            ];
+            
+            const infoHariIni = new Date();
+            const namaHariIni = daftarHari[infoHariIni.getDay()];
+            const cuacaHariIni = daftarCuaca[infoHariIni.getDay()];
+
+            let htmlJadwalHariIni = "";
+            if (namaHariIni === "Senin") {
+                htmlJadwalHariIni = `
+                    <div class="custom-list-item">
+                        <span class="custom-time-tag">08:00 - 10:00</span>
+                        <div>
+                            <h4 style="font-size: 13px; margin:0;">Analisa & Perancangan Sistem Informasi</h4>
+                            <p style="font-size: 11px; color:#b2bec3; margin:0;">Ricky Rohmanto, M.Kom., CDM | R. A206</p>
+                        </div>
+                    </div>
+                    <div class="custom-list-item">
+                        <span class="custom-time-tag">10:10 - 10:50</span>
+                        <div>
+                            <h4 style="font-size: 13px; margin:0;">KPAM IV (PAL)</h4>
+                            <p style="font-size: 11px; color:#b2bec3; margin:0;">Encep Supriatna, SE., S.Kom., M.M | R. A204</p>
+                        </div>
+                    </div>`;
+            } else if (namaHariIni === "Selasa") {
+                htmlJadwalHariIni = `
+                    <div class="custom-list-item">
+                        <span class="custom-time-tag">08:00 - 10:00</span>
+                        <div>
+                            <h4 style="font-size: 13px; margin:0;">Sistem Informasi Akuntansi</h4>
+                            <p style="font-size: 11px; color:#b2bec3; margin:0;">Dr. Nano Suyatna, S.E., Ak., CA., M.Kom | R. B302</p>
+                        </div>
+                    </div>
+                    <div class="custom-list-item">
+                        <span class="custom-time-tag">10:10 - 11:30</span>
+                        <div>
+                            <h4 style="font-size: 13px; margin:0;">Instalasi Komputer & Jaringan</h4>
+                            <p style="font-size: 11px; color:#b2bec3; margin:0;">Ayi Mirazul Muminin, S.Kom., M.M | Ruang Labjar</p>
+                        </div>
+                    </div>
+                    <div class="custom-list-item">
+                        <span class="custom-time-tag">13:30 - 15:30</span>
+                        <div>
+                            <h4 style="font-size: 13px; margin:0;">Pemrograman Web Mobile</h4>
+                            <p style="font-size: 11px; color:#b2bec3; margin:0;">Iin, M.Kom | R. B302</p>
+                        </div>
+                    </div>`;
+            } else if (namaHariIni === "Kamis") {
+                htmlJadwalHariIni = `
+                    <div class="custom-list-item">
+                        <span class="custom-time-tag">08:00 - 09:20</span>
+                        <div>
+                            <h4 style="font-size: 13px; margin:0;">Manajemen Keuangan</h4>
+                            <p style="font-size: 11px; color:#b2bec3; margin:0;">Dr. H. Sugiyanto, S.E., M.Sc | R. A212</p>
+                        </div>
+                    </div>
+                    <div class="custom-list-item">
+                        <span class="custom-time-tag">10:10 - 11:30</span>
+                        <div>
+                            <h4 style="font-size: 13px; margin:0;">Perilaku Organisasi</h4>
+                            <p style="font-size: 11px; color:#b2bec3; margin:0;">Hasti Pramesti Kusnara, S.E., M.M | R. A204</p>
+                        </div>
+                    </div>
+                    <div class="custom-list-item">
+                        <span class="custom-time-tag">13:30 - 14:50</span>
+                        <div>
+                            <h4 style="font-size: 13px; margin:0;">Pendidikan Agama Islam II</h4>
+                            <p style="font-size: 11px; color:#b2bec3; margin:0;">Mimin Mintarsih, M.Ag | R. A206</p>
+                        </div>
+                    </div>`;
+            } else if (namaHariIni === "Jumat") {
+                htmlJadwalHariIni = `
+                    <div class="custom-list-item">
+                        <span class="custom-time-tag">08:00 - 10:00</span>
+                        <div>
+                            <h4 style="font-size: 13px; margin:0;">Pemrograman WEB II</h4>
+                            <p style="font-size: 11px; color:#b2bec3; margin:0;">Anjas Triana, M.M., M.Kom | R. B303</p>
+                        </div>
+                    </div>`;
+            } else if (namaHariIni === "Sabtu") {
+                htmlJadwalHariIni = `
+                    <div class="custom-list-item">
+                        <span class="custom-time-tag">10:00 - Selesai</span>
+                        <div>
+                            <h4 style="font-size: 13px; margin:0;">UKM Computer Club (CC)</h4>
+                            <p style="font-size: 11px; color:#b2bec3; margin:0;">Kegiatan Rutin | Ruang Lab Komputer</p>
+                        </div>
+                    </div>`;
+            } else {
+                htmlJadwalHariIni = `<p style="font-size: 12px; color:#b2bec3; font-style: italic;">Santai dulu! Tidak ada agenda perkuliahan untuk hari ini.</p>`;
+            }
+
+            setTimeout(() => {
+                const mainContent = document.getElementById('app-content');
+                if (!mainContent) return;
+
+                const activeNav = document.querySelector('.bottom-nav .nav-item.active span').textContent.trim();
+                
+                // 1. MODUL DASHBOARD (HOME)
+                if (activeNav === "Home") {
+                    const infoCampusCard = Array.from(mainContent.querySelectorAll('h3, h4, div')).find(el => el.textContent.includes('Info Kampus') || el.textContent.includes('UAS Project Ready'));
+                    if (infoCampusCard) {
+                        const parentCard = infoCampusCard.closest('.card, div');
+                        if (parentCard) {
+                            parentCard.innerHTML = `
+                                <div style="font-weight: 700; color: #6c5ce7; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                                    <i class="bi bi-megaphone-fill"></i> Info Kampus Terkini
+                                </div>
+                                <h5 style="font-weight: 600; font-size: 14px; margin-bottom: 4px; color: #2d3436;">UAS Project Website is Ready! ✨</h5>
+                                <p style="color: #636e72; font-size: 12px; line-height: 1.5; margin: 0;">
+                                    Halo Ardila, pengumpulan link project <b>CV PWA Interaktif</b> sudah dibuka. Pastikan repository GitHub kamu sudah di-push dengan rapi sebelum dikirim ke LMS ya! Semangat!🚀
+                                </p>
+                            `;
+                        }
+                    }
+
+                    const kontenAsli = mainContent.innerHTML;
+                    if (!mainContent.querySelector('.card-custom')) {
+                        mainContent.innerHTML = `
+                            <div class="dashboard-layout-laptop">
+                                <div class="kolom-asli-js">${kontenAsli}</div>
+                                <div class="kolom-tambahan-baru">
+                                    <div class="card-custom">
+                                        <div class="card-custom-title"><i class="bi bi-cloud-sun"></i> Kondisi Cuaca</div>
+                                        <div class="custom-weather-box">
+                                            <i class="bi bi-cloud-sun-fill" style="font-size: 32px;"></i>
+                                            <div>
+                                                <h3 style="font-size: 15px; font-weight: 600; margin:0;">Hari ${namaHariIni}</h3>
+                                                <p style="font-size: 12px; opacity: 0.9; margin:0;">${cuacaHariIni}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-custom">
+                                        <div class="card-custom-title"><i class="bi bi-calendar-check"></i> Agenda Hari ${namaHariIni}</div>
+                                        ${htmlJadwalHariIni}
+                                    </div>
+                                </div>
+                            </div>`;
+                    }
+                }
+                
+                // 2. MODUL JADWAL LENGKAP
+                else if (activeNav === "Jadwal") {
+                    mainContent.innerHTML = `
+                        <div class="card-custom">
+                            <div class="card-custom-title"><i class="bi bi-calendar3"></i> Jadwal Kuliah - Komputerisasi Akuntansi</div>
+                            
+                            <h3 style="font-size: 13px; color:#6c5ce7; margin-top:10px; border-bottom:2px solid #6c5ce7; padding-bottom:3px;">SENIN</h3>
+                            <div class="custom-list-item"><span class="custom-time-tag">08:00 - 10:00</span><div><h4 style="font-size: 13px; margin:0;">Analisa & Perancangan Sistem Informasi</h4><p style="font-size: 11px; color:#b2bec3; margin:0;">Ricky Rohmanto, M.Kom., CDM | R. A206</p></div></div>
+                            <div class="custom-list-item"><span class="custom-time-tag">10:10 - 10:50</span><div><h4 style="font-size: 13px; margin:0;">KPAM IV (PAL)</h4><p style="font-size: 11px; color:#b2bec3; margin:0;">Encep Supriatna, SE., S.Kom., M.M | R. A204</p></div></div>
+
+                            <h3 style="font-size: 13px; color:#6c5ce7; margin-top:15px; border-bottom:2px solid #6c5ce7; padding-bottom:3px;">SELASA</h3>
+                            <div class="custom-list-item"><span class="custom-time-tag">08:00 - 10:00</span><div><h4 style="font-size: 13px; margin:0;">Sistem Informasi Akuntansi</h4><p style="font-size: 11px; color:#b2bec3; margin:0;">Dr. Nano Suyatna, S.E., Ak., CA., M.Kom | R. B302</p></div></div>
+                            <div class="custom-list-item"><span class="custom-time-tag">10:10 - 11:30</span><div><h4 style="font-size: 13px; margin:0;">Instalasi Komputer & Jaringan</h4><p style="font-size: 11px; color:#b2bec3; margin:0;">Ayi Mirazul Muminin, S.Kom., M.M | Ruang Labjar</p></div></div>
+                            <div class="custom-list-item"><span class="custom-time-tag">13:30 - 15:30</span><div><h4 style="font-size: 13px; margin:0;">Pemrograman Web Mobile</h4><p style="font-size: 11px; color:#b2bec3; margin:0;">Iin, M.Kom | R. B302</p></div></div>
+
+                            <h3 style="font-size: 13px; color:#6c5ce7; margin-top:15px; border-bottom:2px solid #6c5ce7; padding-bottom:3px;">RABU</h3>
+                            <p style="font-size: 11px; color:#b2bec3; padding: 5px 0; font-style: italic;">Tidak ada jadwal kuliah.</p>
+
+                            <h3 style="font-size: 13px; color:#6c5ce7; margin-top:15px; border-bottom:2px solid #6c5ce7; padding-bottom:3px;">KAMIS</h3>
+                            <div class="custom-list-item"><span class="custom-time-tag">08:00 - 09:20</span><div><h4 style="font-size: 13px; margin:0;">Manajemen Keuangan</h4><p style="font-size: 11px; color:#b2bec3; margin:0;">Dr. H. Sugiyanto, S.E., M.Sc | R. A212</p></div></div>
+                            <div class="custom-list-item"><span class="custom-time-tag">10:10 - 11:30</span><div><h4 style="font-size: 13px; margin:0;">Perilaku Organisasi</h4><p style="font-size: 11px; color:#b2bec3; margin:0;">Hasti Pramesti Kusnara, S.E., M.M | R. A204</p></div></div>
+                            <div class="custom-list-item"><span class="custom-time-tag">13:30 - 14:50</span><div><h4 style="font-size: 13px; margin:0;">Pendidikan Agama Islam II</h4><p style="font-size: 11px; color:#b2bec3; margin:0;">Mimin Mintarsih, M.Ag | R. A206</p></div></div>
+
+                            <h3 style="font-size: 13px; color:#6c5ce7; margin-top:15px; border-bottom:2px solid #6c5ce7; padding-bottom:3px;">JUMAT</h3>
+                            <div class="custom-list-item"><span class="custom-time-tag">08:00 - 10:00</span><div><h4 style="font-size: 13px; margin:0;">Pemrograman WEB II</h4><p style="font-size: 11px; color:#b2bec3; margin:0;">Anjas Triana, M.M., M.Kom | R. B303</p></div></div>
+
+                            <h3 style="font-size: 13px; color:#6c5ce7; margin-top:15px; border-bottom:2px solid #6c5ce7; padding-bottom:3px;">SABTU</h3>
+                            <div class="custom-list-item"><span class="custom-time-tag">10:00 - Selesai</span><div><h4 style="font-size: 13px; margin:0;">UKM Computer Club (CC)</h4><p style="font-size: 11px; color:#b2bec3; margin:0;">Kegiatan Rutin | Ruang Lab Komputer</p></div></div>
+
+                            <h3 style="font-size: 13px; color:#6c5ce7; margin-top:15px; border-bottom:2px solid #6c5ce7; padding-bottom:3px;">MINGGU</h3>
+                            <p style="font-size: 11px; color:#b2bec3; padding: 5px 0; font-style: italic;">Tidak ada jadwal kuliah.</p>
+                        </div>`;
+                }
+
+                // 3. MODUL PROFIL (PENAMBAHAN LINK GITHUB DAN CV LIVE)
+                else if (activeNav === "Profil") {
+                    const profileCard = mainContent.querySelector('.card, div');
+                    if (profileCard && !document.getElementById('github-profile-btn')) {
+                        // Menghapus tombol bawaan lama agar rapi dan menggantinya dengan grup tombol baru yang cantik
+                        const buttonLama = profileCard.querySelector('button');
+                        if (buttonLama) buttonLama.remove();
+
+                        const containerTombol = document.createElement('div');
+                        containerTombol.className = 'profile-links-container';
+                        containerTombol.innerHTML = `
+                            <a href="https://github.com/ardilasabila08/ardila-sabila" target="_blank" rel="noopener noreferrer" class="btn-profile-link btn-github" id="github-profile-btn">
+                                <i class="bi bi-github"></i> Lihat Repository GitHub
+                            </a>
+                            <a href="https://ardila-sabila.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-profile-link btn-cv-live">
+                                <i class="bi bi-globe2"></i> Buka CV Live Portfolio
+                            </a>
+                        `;
+                        profileCard.appendChild(containerTombol);
+                    }
+                }
+            }, 50);
+        }
+
+        // Melakukan pemindaian berkala untuk memastikan halaman selalu sinkron
+        setInterval(() => {
+            const mainApp = document.getElementById('main-app');
+            const mainContent = document.getElementById('app-content');
+            if (mainApp && !mainApp.classList.contains('hidden') && mainContent && mainContent.children.length > 0) {
+                const activeNav = document.querySelector('.bottom-nav .nav-item.active span').textContent.trim();
+                if (activeNav === "Profil" && !document.getElementById('github-profile-btn')) {
+                    sisipkanFiturDinamis();
+                } else if (activeNav === "Home" && !mainContent.querySelector('.card-custom')) {
+                    sisipkanFiturDinamis();
+                }
+            }
+        }, 300);
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
