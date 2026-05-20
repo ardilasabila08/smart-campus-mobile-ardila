@@ -28,7 +28,7 @@ body {
     display: flex; justify-content: center; align-items: center; min-height: 100vh;
 }
 
-/* Bingkai HP Utama */
+/* Bingkai HP Utama (Default untuk HP) */
 .auth-container, .app-container {
     width: 380px;
     height: 85vh;
@@ -128,3 +128,35 @@ div[style*="background:#f9f9fb"] span {
 .nav-item { color: #b2bec3; text-align: center; font-size: 11px; cursor: pointer; }
 .nav-item.active { color: var(--primary); }
 .nav-item i { font-size: 22px; display: block; margin-bottom: 3px; }
+
+
+/* ==========================================================================
+   PENAMBAHAN BARU: ATURAN KHUSUS LAPTOP / DESKTOP (RESPONSIVE)
+   ========================================================================== */
+@media (min-width: 768px) {
+    /* Ketika dibuka di laptop, ukurannya tidak lagi sekecil HP */
+    .app-container {
+        width: 100% !important;
+        max-width: 1140px !important; /* Membuat tampilan melebar pas di laptop */
+        height: calc(100vh - 40px) !important; /* Menyesuaikan tinggi layar laptop */
+        margin: 20px auto;
+        border-radius: 30px;
+    }
+
+    /* Halaman login biar tetap proporsional berbentuk kotak di tengah layar laptop */
+    .auth-container {
+        width: 100% !important;
+        max-width: 450px !important;
+        height: auto !important;
+        margin: 60px auto;
+        border-radius: 30px;
+        padding: 50px 40px;
+    }
+
+    /* Layout Dashboard membagi 2 kolom khusus di Laptop */
+    .dashboard-layout-laptop {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+}
